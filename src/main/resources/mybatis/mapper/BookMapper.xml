@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.hellomybatis.mapper.BookMapper">
+
+    <select id="mySelect" resultType="com.example.hellomybatis.entity.Book">
+        select * from books;
+   </select>
+
+
+    <select id="mySelectId" parameterType="int" resultType="com.example.hellomybatis.entity.Book">
+        select * from books where id = #{Id}
+    </select>
+
+    <insert id="myInsert" parameterType="com.example.hellomybatis.entity.Book">
+        insert into books(id,name) values(#{id},#{name});
+    </insert>
+
+    <update id="myUpdate" parameterType="com.example.hellomybatis.entity.Book">
+        <!--如果参数parameterType是Book,则其#{name}和#{id}必须是该对象的属性，名称(包括大小写)，必须一样！-->
+        update books set name = #{name} where id = #{id};
+    </update>
+
+    <delete id="myDelete" parameterType="int">
+        <!--如果参数是int等,则#{Id}，花括号里面的名称任意！-->
+        delete from books where id = #{Id};
+    </delete>
+</mapper>
